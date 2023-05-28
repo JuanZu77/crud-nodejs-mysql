@@ -1,12 +1,10 @@
 
-
 const controller = {};
 
  controller.list = (req, res) => {
     //res.send('hello world')
     req.getConnection((err, conn)=>{
 
-      //conecta con customers.ejs
       conn.query('SELECT * FROM customer', (err, customers)=>{
          if(err){
             res.json({err: err.message})
@@ -19,14 +17,13 @@ const controller = {};
     }); 
  };
 
-//POST para boton submit save es representativo, porque aqui guardamos a los compradores (customer)
+//POST 
 controller.save = (req, res)=>{
    
    req.getConnection((err, conn)=>{
 
       const data = req.body;
 
-      //conecta con customers.ejs
       conn.query('INSERT INTO customer set ?', [data],(err, rowCustomer)=>{
       
          if(err){
@@ -54,17 +51,15 @@ controller.edit = (req, res)=>{
    
          res.render('customer_edit',{
             data:customer[0]
-         });
-         
-        }); 
-   
-     });
+         });    
+      });   
+   });
 };
 
      //Update Data
     controller.update = (req, res)=>{
       const {id} = req.params; 
-      const newCustomer = req.body; //guardamos los nuevos datos de customer
+      const newCustomer = req.body; 
 
       req.getConnection((err, conn)=>{
            conn.query('UPDATE customer set ? WHERE id = ?', [newCustomer, id],(err, rows)=>{
@@ -72,17 +67,15 @@ controller.edit = (req, res)=>{
             if(err){
                res.json({err: err.message})
             }
-
             res.redirect('/');
-
            });
       });
-    };
+};
 
 //DELETE
 controller.delete = (req, res)=>{
 
-   const {id} = req.params; //const id = req.params.id;
+  const {id} = req.params; 
    
   req.getConnection((err, conn)=>{
 
@@ -91,11 +84,9 @@ controller.delete = (req, res)=>{
       if(err){
          res.json({err: err.message})
       }
-
       console.log(rowCustomer)
       res.redirect('/');
      }); 
-
   });
 };
 

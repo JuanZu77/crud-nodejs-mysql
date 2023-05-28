@@ -2,12 +2,9 @@
  <%- include ('partial/_header') %> 
 
  <div class="container">
-
-    <div class="row mt-5"> <!--mt-5= margin-top: 5px-->
-
-        <div class="col-md-9"> <!--columna de 7 a la IZQ-->
-
-            <!--Insertar los datos -->
+    <div class="row mt-5"> 
+        <div class="col-md-9"> 
+            <!--Mostrar los datos -->
             <table class="table table-bordered table-hover">
                 <thead> <!--cabecera de la tabla -->
                   <tr>
@@ -21,7 +18,7 @@
                   </tr>   
                 </thead>
                 
-                <tbody><!--Cuerpo de la tabla-->
+                <tbody>
                    <% if (data) {%>
                     <% for (var i =0; i < data.length; i++ ){%>
                         <tr>
@@ -36,48 +33,37 @@
 
                             <td>
                                 <a href="/update/<%= data[i].id %>" class="btn btn-default" style="width: 100%; color: white; background-color: rgb(26, 156, 217);">Update</a>
-                            </td>
-                           
+                            </td>                         
                         </tr>
 
                         <%}%><!--cierra for-->
-
                     <%}%><!--cierra if-->
                 </tbody>
             </table>
 
         </div>
-
-        <div class="col-md-3"> <!--columna de 5, se posiciona a la DER-->
+        <!--Insertar los datos -->
+        <div class="col-md-3"> 
           
             <div class="card">
-
-               <!--card-body de bootstrap: recuadro tipo card-->
                 <div class="card-body">
                     <form action="/add" method="post"> 
-
-                        <!--clase de bootstrap : dar separacion entre divs-->
                         <div class="form-group"> 
                         
-                            <!--los "name" son los datos que va a recibir el servidor-->
-                            <input type="text" name="names" value="" placeholder="names" class="form-control mb-2">
+                            <input type="text" name="names" value="" placeholder="name" class="form-control mb-2">
         
-                            <input type="text" name="dir" value="" placeholder="dir" class="form-control mb-2">
+                            <input type="text" name="dir" value="" placeholder="address" class="form-control mb-2">
         
                             <input type="text" name="phone" value="" placeholder="phone" class="form-control mb-2 ">
-                    
                         </div>
         
                         <button type="submit" class="btn btn-primary">
                             Save Customer
-                        </button>
-        
+                        </button>  
                     </form>
                 </div>
-
             </div>
-        </div>
-        
+        </div>    
     </div>
 </div>
 

@@ -29,8 +29,8 @@ const customerRoutes = require('./routes/customer');
       port: 3306,
       database: 'crudenodemysql'
       },'single'));
-
-   //urlenconded: este middleware permite ENTENDER al servidor todos los datos enviados desde el FORM. En "false" no puden enviar imagenes ni datos codificados
+    
+      //urlencoded
    app.use(express.urlencoded({extended:false}));   
 
 //ROUTES
